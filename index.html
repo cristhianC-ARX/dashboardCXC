@@ -1,3 +1,5 @@
+
+
 <!-- Creador: Cristhian Aguilar
      Departamento de IT 
   -->
@@ -261,11 +263,11 @@
             box-shadow: 0 5px 15px rgba(255,107,53,0.3);
         }
 
-        .chart-canvas {
-            position: relative;
-            height: 400px;
-            margin-top: 20px;
-        }
+       .chart-canvas {
+    position: relative;
+    height: 500px; /* Aumentar altura para la leyenda */
+    margin-top: 20px;
+}
 
         /* Desglose expandible */
         .expenses-breakdown {
@@ -404,6 +406,8 @@
             <button class="nav-tab" onclick="showTab('marzo', this)">Marzo</button>
             <button class="nav-tab" onclick="showTab('abril', this)">Abril</button>
             <button class="nav-tab" onclick="showTab('mayo', this)">Mayo</button>
+            <button class="nav-tab" onclick="showTab('junio', this)">Junio</button>
+
         </div>
 
         <div class="tab-content">
@@ -412,12 +416,12 @@
                 <div class="metrics-grid">
                     <div class="metric-card">
                         <div class="metric-icon">💰</div>
-                        <div class="metric-value">Q 2,469,859</div>
+                        <div class="metric-value">Q 2,847,951</div>
                         <div class="metric-label">Gastos Totales</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-icon">📊</div>
-                        <div class="metric-value">141</div>
+<div class="metric-value">141</div>
                         <div class="metric-label">Total Casos</div>
                     </div>
                     <div class="metric-card">
@@ -914,6 +918,78 @@
                     </div>
                 </div>
             </div>
+            <!-- Junio -->
+            <div id="junio" class="tab-panel">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-value">Q 378,092</div>
+                        <div class="metric-label">Gastos Totales</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">Casos</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎯</div>
+                        <div class="metric-value">Q 0</div>
+                        <div class="metric-label">Colocaciones</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-value">Q 0</div>
+                        <div class="metric-label">Costo por Cliente</div>
+                    </div>
+                </div>
+
+                <div class="charts-container">
+                    <div class="chart-panel">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Distribución de Gastos</h3>
+                            <div class="chart-toggle">
+                                <button class="toggle-btn active" onclick="toggleChart('junio-left', 'bar', this)">📊 Barras</button>
+                                <button class="toggle-btn" onclick="toggleChart('junio-left', 'pie', this)">🥧 Circular</button>
+                            </div>
+                        </div>
+                        <div class="chart-canvas">
+                            <canvas id="junioLeftChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-panel">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Métricas de Rendimiento</h3>
+                        </div>
+                        <div class="chart-canvas">
+                            <canvas id="junioRightChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expenses-breakdown">
+                    <div class="breakdown-header" onclick="toggleBreakdown('junio-breakdown')">
+                        <h3 class="breakdown-title">💼 Desglose de Gastos - Junio</h3>
+                        <span class="breakdown-arrow">⬇️</span>
+                    </div>
+                    <div id="junio-breakdown" class="breakdown-content">
+                        <div class="breakdown-list">
+                            <div class="breakdown-item">
+                                <span class="breakdown-category">Comisiones</span>
+                                <span class="breakdown-amount">Q 220,409</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-category">Sueldos</span>
+                                <span class="breakdown-amount">Q 120,048</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-category">Honorarios</span>
+                                <span class="breakdown-amount">Q 37,635</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -921,40 +997,47 @@
         // Datos globales
         const monthlyData = {
             enero: {
-                gastos: [237951.04, 32796.73, 2474.17, 2983.00, 97441.00, 28780.00, 114628.50],
+    gastos: [237951.04, 32796.73, 2474.17, 2983.00, 164791.80, 28780.00, 116266.21],
                 labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
                 casos: 26,
                 colocaciones: 3972000,
                 costoCliente: 19886.71
             },
             febrero: {
-                gastos: [181835.00, 40860.73, 2174.08, 22917.00, 124220.00, 28780.00, 215597.00],
+    gastos: [181835.00, 40860.73, 2174.08, 22917.00, 150329.04, 28780.00, 273040.00],
                 labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
                 casos: 19,
                 colocaciones: 1677000,
                 costoCliente: 32441.25
             },
             marzo: {
-                gastos: [123978.00, 32796.00, 3303.00, 16867.00, 129124.00, 28780.00, 137789.00],
+    gastos: [123978.00, 32796.00, 3303.00, 16867.00, 155454.56, 28780.00, 232739.24],
                 labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
                 casos: 30,
                 colocaciones: 6540000,
                 costoCliente: 15754.57
             },
             abril: {
-                gastos: [124644.00, 32796.00, 2796.00, 21226.00, 116335.00, 40298.00, 104083.00],
+    gastos: [124644.00, 32796.00, 2796.00, 21226.00, 132873.22, 40298.74, 177355.49],
                 labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
                 casos: 29,
                 colocaciones: 4300000,
                 costoCliente: 15247.52
             },
-            mayo: {
-                gastos: [133552.00, 39792.00, 1788.00, 18509.00, 97486.00, 42634.00, 87845.00],
+           mayo: {
+    gastos: [133552.00, 39792.00, 1788.00, 18509.00, 120047.77, 37634.59, 130591.25],
                 labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
                 casos: 37,
                 colocaciones: 5343000,
                 costoCliente: 11394.76
-            }
+            },
+            junio: {
+        gastos: [0, 0, 0, 0, 120047.77, 37634.59, 220409.48],
+        labels: ['Publicidad', 'Contenido', 'Plataformas', 'Otros Marketing', 'Sueldos', 'Honorarios', 'Comisiones'],
+        casos: 0,
+        colocaciones: 0,
+        costoCliente: 0
+    }
         };
 
         // Colores profesionales
@@ -980,28 +1063,52 @@
                         }
                     }
                 },
-                tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: '#fff',
-                    bodyColor: '#fff',
-                    borderColor: '#FF6B35',
-                    borderWidth: 2,
-                    cornerRadius: 10,
-                    displayColors: true,
-                    callbacks: {
-                        label: function(context) {
-                            const value = context.parsed.y || context.parsed;
-                            return context.label + ': Q ' + value.toLocaleString();
-                        }
-                    }
-                }
+              
+tooltip: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    titleColor: '#fff',
+    bodyColor: '#fff',
+    borderColor: '#FF6B35',
+    borderWidth: 2,
+    cornerRadius: 10,
+    displayColors: true,
+    callbacks: {
+        label: function(context) {
+            // Para gráficas de barras
+            if (context.parsed.y !== undefined) {
+                return context.dataset.label + ': Q ' + context.parsed.y.toLocaleString();
+            }
+            // Para gráficas circulares
+            if (context.parsed !== undefined) {
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                return context.label + ': Q ' + context.parsed.toLocaleString() + ' (' + percentage + '%)';
+            }
+            return context.label + ': Q ' + context.raw.toLocaleString();
+        }
+    }
+}
+
+
             },
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+    padding: {
+        top: 20,
+        bottom: 120 // Espacio para la leyenda
+    }
+},
             animation: {
-                duration: 1500,
-                easing: 'easeInOutQuart'
-            }
+    duration: 1500,
+    easing: 'easeInOutQuart'
+},
+elements: {
+    arc: {
+        borderWidth: 3
+    }
+},
+radius: '75%', // Hacer el círculo más pequeño
         };
 
         // Función para mostrar pestañas
@@ -1143,47 +1250,54 @@ if (type === 'pie') {
             const ctx = chart.ctx;
             const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
             
-            chart.data.datasets[0].data.forEach((value, index) => {
-                const meta = chart.getDatasetMeta(0);
-                const arc = meta.data[index];
-                const percentage = ((value / total) * 100).toFixed(1);
-                
-                // Solo mostrar porcentaje si es mayor al 5%
-                if (percentage > 5) {
-                    const angle = (arc.startAngle + arc.endAngle) / 2;
-                    const radius = (arc.innerRadius + arc.outerRadius) / 2;
-                    
-                    const x = arc.x + Math.cos(angle) * radius * 0.8;
-                    const y = arc.y + Math.sin(angle) * radius * 0.8;
-                    
-                    // Fondo semitransparente para mejor legibilidad
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                    ctx.beginPath();
-                    ctx.roundRect(x - 25, y - 12, 50, 24, 12);
-                    ctx.fill();
-                    
-                    ctx.fillStyle = '#fff';
-                    ctx.font = 'bold 12px Segoe UI';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(percentage + '%', x, y);
-                }
-            });
+chart.data.datasets[0].data.forEach((value, index) => {
+    const meta = chart.getDatasetMeta(0);
+    const arc = meta.data[index];
+    const percentage = ((value / total) * 100).toFixed(1);
+    
+    // Solo mostrar porcentaje si es mayor al 3%
+    if (percentage > 3) {
+        const angle = (arc.startAngle + arc.endAngle) / 2;
+        const radius = arc.outerRadius + 25; // Posicionar fuera del círculo
+        
+        const x = arc.x + Math.cos(angle) * radius;
+        const y = arc.y + Math.sin(angle) * radius;
+        
+        // Fondo semitransparente para mejor legibilidad
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.beginPath();
+        ctx.roundRect(x - 25, y - 12, 50, 24, 12);
+        ctx.fill();
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px Segoe UI';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(percentage + '%', x, y);
+    }
+});
             
-// Leyenda externa mejorada con mejor posicionamiento
-const legendStartY = chart.height - 60;
-ctx.font = 'bold 11px Segoe UI';
+// Leyenda definitiva centrada debajo del gráfico
+const legendStartY = chart.height - 100; // Más espacio para el círculo arriba
+const centerX = chart.width / 2;
+ctx.font = 'bold 12px Segoe UI';
 
 chart.data.labels.forEach((label, index) => {
     const value = chart.data.datasets[0].data[index];
     const percentage = ((value / total) * 100).toFixed(1);
     const color = chart.data.datasets[0].backgroundColor[index];
     
-    // Posicionamiento mejorado - más espacio a la derecha
-    const x = 50 + (index % 2) * 280;
-    const y = legendStartY + Math.floor(index / 2) * 25;
+    // Calcular posición para centrar la leyenda
+    const itemsPerRow = 3;
+    const rowIndex = Math.floor(index / itemsPerRow);
+    const colIndex = index % itemsPerRow;
+    const itemWidth = 180;
+    const startX = centerX - (itemsPerRow * itemWidth) / 2;
     
-    // Círculo de color más grande
+    const x = startX + colIndex * itemWidth;
+    const y = legendStartY + rowIndex * 30;
+    
+    // Círculo de color
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.arc(x, y, 8, 0, 2 * Math.PI);
@@ -1194,10 +1308,10 @@ chart.data.labels.forEach((label, index) => {
     ctx.lineWidth = 2;
     ctx.stroke();
     
-    // Texto con mejor espaciado
+    // Texto centrado y ordenado
     ctx.fillStyle = '#333';
     ctx.textAlign = 'left';
-    ctx.fillText(label + ': ' + percentage + '%', x + 20, y + 4);
+    ctx.fillText(`${label}: ${percentage}%`, x + 15, y + 4);
 });
         }
     }];
@@ -1210,7 +1324,7 @@ chart.data.labels.forEach((label, index) => {
         function createGeneralTrendChart(type) {
             const ctx = document.getElementById('generalRightChart').getContext('2d');
             
-            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
             const gastosTotales = Object.values(monthlyData).map(month => 
                 month.gastos.reduce((sum, gasto) => sum + gasto, 0)
             );
@@ -1296,7 +1410,7 @@ chart.data.labels.forEach((label, index) => {
         function createGeneralComparisonChart() {
             const ctx = document.getElementById('generalTrendChart').getContext('2d');
             
-            const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
             const colocaciones = Object.values(monthlyData).map(month => month.colocaciones / 1000000);
             const costosCliente = Object.values(monthlyData).map(month => month.costoCliente);
 
@@ -1439,62 +1553,69 @@ if (type === 'pie') {
             const ctx = chart.ctx;
             const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
             
-            chart.data.datasets[0].data.forEach((value, index) => {
-                const meta = chart.getDatasetMeta(0);
-                const arc = meta.data[index];
-                const percentage = ((value / total) * 100).toFixed(1);
-                
-                // Solo mostrar porcentaje si es mayor al 5%
-                if (percentage > 5) {
-                    const angle = (arc.startAngle + arc.endAngle) / 2;
-                    const radius = (arc.innerRadius + arc.outerRadius) / 2;
-                    
-                    const x = arc.x + Math.cos(angle) * radius * 0.8;
-                    const y = arc.y + Math.sin(angle) * radius * 0.8;
-                    
-                    // Fondo semitransparente para mejor legibilidad
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                    ctx.beginPath();
-                    ctx.roundRect(x - 25, y - 12, 50, 24, 12);
-                    ctx.fill();
-                    
-                    ctx.fillStyle = '#fff';
-                    ctx.font = 'bold 12px Segoe UI';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(percentage + '%', x, y);
-                }
-            });
+       chart.data.datasets[0].data.forEach((value, index) => {
+    const meta = chart.getDatasetMeta(0);
+    const arc = meta.data[index];
+    const percentage = ((value / total) * 100).toFixed(1);
+    
+    // Solo mostrar porcentaje si es mayor al 3%
+    if (percentage > 3) {
+        const angle = (arc.startAngle + arc.endAngle) / 2;
+        const radius = arc.outerRadius + 25; // Posicionar fuera del círculo
+        
+        const x = arc.x + Math.cos(angle) * radius;
+        const y = arc.y + Math.sin(angle) * radius;
+        
+        // Fondo semitransparente para mejor legibilidad
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+        ctx.beginPath();
+        ctx.roundRect(x - 25, y - 12, 50, 24, 12);
+        ctx.fill();
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 12px Segoe UI';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(percentage + '%', x, y);
+    }
+});
             
-            // Leyenda externa mejorada con mejor posicionamiento
-            const legendStartY = chart.height - 60;
-            ctx.font = 'bold 11px Segoe UI';
+// Leyenda definitiva centrada debajo del gráfico
+const legendStartY = chart.height - 100; // Más espacio para el círculo arriba
+const centerX = chart.width / 2;
+ctx.font = 'bold 12px Segoe UI';
 
-            chart.data.labels.forEach((label, index) => {
-                const value = chart.data.datasets[0].data[index];
-                const percentage = ((value / total) * 100).toFixed(1);
-                const color = chart.data.datasets[0].backgroundColor[index];
-                
-                // Posicionamiento mejorado - más espacio a la derecha
-                const x = 50 + (index % 2) * 280;
-                const y = legendStartY + Math.floor(index / 2) * 25;
-                
-                // Círculo de color más grande
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.arc(x, y, 8, 0, 2 * Math.PI);
-                ctx.fill();
-                
-                // Borde blanco para mejor definición
-                ctx.strokeStyle = '#fff';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
-                // Texto con mejor espaciado
-                ctx.fillStyle = '#333';
-                ctx.textAlign = 'left';
-                ctx.fillText(label + ': ' + percentage + '%', x + 20, y + 4);
-            });
+chart.data.labels.forEach((label, index) => {
+    const value = chart.data.datasets[0].data[index];
+    const percentage = ((value / total) * 100).toFixed(1);
+    const color = chart.data.datasets[0].backgroundColor[index];
+    
+    // Calcular posición para centrar la leyenda
+    const itemsPerRow = 3;
+    const rowIndex = Math.floor(index / itemsPerRow);
+    const colIndex = index % itemsPerRow;
+    const itemWidth = 180;
+    const startX = centerX - (itemsPerRow * itemWidth) / 2;
+    
+    const x = startX + colIndex * itemWidth;
+    const y = legendStartY + rowIndex * 30;
+    
+    // Círculo de color
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, 8, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Borde blanco para mejor definición
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Texto centrado y ordenado
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'left';
+    ctx.fillText(`${label}: ${percentage}%`, x + 15, y + 4);
+});
         }
     }];
     
@@ -1509,7 +1630,7 @@ function createMonthlyPerformanceChart(month) {
     const data = monthlyData[month];
 
     // Obtener datos de todos los meses hasta el mes actual
-    const monthOrder = ['enero', 'febrero', 'marzo', 'abril', 'mayo'];
+const monthOrder = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio'];
     const currentIndex = monthOrder.indexOf(month);
     const monthsToShow = monthOrder.slice(0, currentIndex + 1);
     
