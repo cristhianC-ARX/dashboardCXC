@@ -1,5 +1,7 @@
 
 
+
+
 <!-- Creador: Cristhian Aguilar
      Departamento de IT 
   -->
@@ -202,6 +204,40 @@
             opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+        .metrics-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .metrics-btn {
+            background: white;
+            border: 2px solid #ff6b35;
+            color: #ff6b35;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .metrics-btn:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+
+        .metrics-btn.active {
+            background: #ff6b35;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
         }
 
         .charts-container {
@@ -412,30 +448,60 @@
 
         <div class="tab-content">
             <!-- Vista General -->
-            <div id="general" class="tab-panel active">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 3,572,268</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-<div class="metric-value">175</div>
-                        <div class="metric-label">Total Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-<div class="metric-value">Q 29,417,000</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 19,847</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
-
+          <div id="general" class="tab-panel">
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+<div class="metrics-container">
+        <!-- Métricas Generales -->
+        <div class="metrics-grid general-metrics active">
+            <div class="metric-card">
+                <div class="metric-icon">💰</div>
+                <div class="metric-value">Q 3,572,268</div>
+                <div class="metric-label">Gastos Totales</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">📊</div>
+                <div class="metric-value">175</div>
+                <div class="metric-label">Total Casos</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🎯</div>
+                <div class="metric-value">Q 29,417,000</div>
+                <div class="metric-label">Colocaciones</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">👥</div>
+                <div class="metric-value">Q 19,847</div>
+                <div class="metric-label">Costo por Cliente</div>
+            </div>
+        </div>
+        
+        <!-- Métricas de Marketing -->
+        <div class="metrics-grid marketing-metrics" style="display: none;">
+            <div class="metric-card">
+                <div class="metric-icon">📊</div>
+                <div class="metric-value" id="general-ratio">Q 0</div>
+                <div class="metric-label">Gasto vs Casos</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">📢</div>
+                <div class="metric-value" id="general-publicidad">Q 0</div>
+                <div class="metric-label">Publicidad</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🔧</div>
+                <div class="metric-value" id="general-plataformas">Q 0</div>
+                <div class="metric-label">Plataformas</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🎨</div>
+                <div class="metric-value" id="general-contenido">Q 0</div>
+               <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
                 <div class="charts-container">
                     <div class="chart-panel">
                         <div class="chart-header">
@@ -475,30 +541,60 @@
             </div>
 
             <!-- Enero -->
-            <div id="enero" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 586,043</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-<div class="metric-value">29</div>
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-<div class="metric-value">Q 4,190,333</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 20,208</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
-
+          <div id="enero" class="tab-panel">
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+    <div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 586,043</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">29</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 4,190,333</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 20,208</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="enero-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="enero-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="enero-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+            <div class="metric-value" id="enero-contenido">Q 0</div>
+            <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
                 <div class="charts-container">
                     <div class="chart-panel">
                         <div class="chart-header">
@@ -565,29 +661,59 @@
 
             <!-- Febrero -->
             <div id="febrero" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 699,936</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-<div class="metric-value">22</div>
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-<div class="metric-value">Q 1,895,333</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 31,815</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
-
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+   <div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 699,936</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">22</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 1,895,333</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 31,815</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="febrero-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="febrero-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="febrero-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+            <div class="metric-value" id="febrero-contenido">Q 0</div>
+            <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
                 <div class="charts-container">
                     <div class="chart-panel">
                         <div class="chart-header">
@@ -654,29 +780,59 @@
 
             <!-- Marzo -->
             <div id="marzo" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 593,918</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-<div class="metric-value">33</div>
-
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-<div class="metric-value">Q 6,758,333</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 17,998</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+    <div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 593,918</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">33</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 6,758,333</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 17,998</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="marzo-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="marzo-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="marzo-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+            <div class="metric-value" id="marzo-contenido">Q 0</div>
+               <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
 
                 <div class="charts-container">
                     <div class="chart-panel">
@@ -735,37 +891,68 @@
                             </div>
                             <div class="breakdown-item">
                                 <span class="breakdown-category">Plataformas y herramientas de marketing</span>
-                                <span class="breakdown-amount">Q 3,303</span>
+<span class="breakdown-amount">Q 3,303</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+</div>
 
             <!-- Abril -->
-            <div id="abril" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 531,989</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-                        <div class="metric-value">29</div>
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-                        <div class="metric-value">Q 4,300,000</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 18,344</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
+           <div id="abril" class="tab-panel">
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+ <div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 531,989</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">29</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 4,300,000</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 18,344</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="abril-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="abril-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="abril-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+<div class="metric-value" id="abril-contenido">Q 0</div>
+            <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
 
                 <div class="charts-container">
                     <div class="chart-panel">
@@ -833,28 +1020,59 @@
 
             <!-- Mayo -->
             <div id="mayo" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 571,733</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-                        <div class="metric-value">37</div>
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-                        <div class="metric-value">Q 5,343,000</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 15,452</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+    <div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 571,733</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">37</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 5,343,000</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 15,452</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="mayo-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="mayo-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="mayo-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+            <div class="metric-value" id="mayo-contenido">Q 0</div>
+         <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
 
                 <div class="charts-container">
                     <div class="chart-panel">
@@ -920,29 +1138,60 @@
                 </div>
             </div>
             <!-- Junio -->
-            <div id="junio" class="tab-panel">
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon">💰</div>
-<div class="metric-value">Q 588,649</div>
-                        <div class="metric-label">Gastos Totales</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">📊</div>
-<div class="metric-value">25</div>
-                        <div class="metric-label">Casos</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-<div class="metric-value">Q 6,930,000</div>
-                        <div class="metric-label">Colocaciones</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">👥</div>
-<div class="metric-value">Q 23,546</div>
-                        <div class="metric-label">Costo por Cliente</div>
-                    </div>
-                </div>
+         <div id="junio" class="tab-panel">
+    <div class="metrics-toggle">
+        <button class="metrics-btn active" onclick="showMetrics('general', this)">📊 Gastos General</button>
+        <button class="metrics-btn" onclick="showMetrics('marketing', this)">📈 Gastos Marketing</button>
+    </div>
+<div class="metrics-container">
+    <!-- Métricas Generales -->
+    <div class="metrics-grid general-metrics active">
+        <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">Q 588,649</div>
+            <div class="metric-label">Gastos Totales</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">25</div>
+            <div class="metric-label">Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">Q 6,930,000</div>
+            <div class="metric-label">Colocaciones</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value">Q 23,546</div>
+            <div class="metric-label">Costo por Cliente</div>
+        </div>
+    </div>
+    
+    <!-- Métricas de Marketing -->
+    <div class="metrics-grid marketing-metrics" style="display: none;">
+        <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="junio-ratio">Q 0</div>
+            <div class="metric-label">Gasto vs Casos</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">📢</div>
+            <div class="metric-value" id="junio-publicidad">Q 0</div>
+            <div class="metric-label">Publicidad</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🔧</div>
+            <div class="metric-value" id="junio-plataformas">Q 0</div>
+            <div class="metric-label">Plataformas</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon">🎨</div>
+            <div class="metric-value" id="junio-contenido">Q 0</div>
+            <div class="metric-label">Creación Contenido</div>
+        </div>
+    </div>
+</div>
 
                 <div class="charts-container">
                     <div class="chart-panel">
@@ -1128,34 +1377,59 @@ elements: {
 radius: '75%', // Hacer el círculo más pequeño
         };
 
-        // Función para mostrar pestañas
-        function showTab(tabName, element) {
-            // Ocultar todas las pestañas
-            document.querySelectorAll('.tab-panel').forEach(panel => {
-                panel.classList.remove('active');
-            });
-            
-            // Remover clase active de todos los botones
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Mostrar la pestaña seleccionada
-            document.getElementById(tabName).classList.add('active');
-            
-            // Activar el botón correspondiente
-            element.classList.add('active');
-            
-            // Inicializar gráficas del mes seleccionado
-            setTimeout(() => {
-                if (tabName === 'general') {
-                    initGeneralCharts();
-                } else {
-                    initMonthlyCharts(tabName);
-                }
-            }, 300);
+function showTab(tabName, element) {
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+    });
+    
+    // Remover clase active de todos los botones
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Mostrar la pestaña seleccionada
+    document.getElementById(tabName).classList.add('active');
+    
+    // Activar el botón correspondiente
+    element.classList.add('active');
+    
+    // Resetear botones de métricas a "Gastos General"
+    const metricsToggle = document.querySelector(`#${tabName} .metrics-toggle`);
+    if (metricsToggle) {
+        const generalBtn = metricsToggle.querySelector('.metrics-btn:first-child');
+        const marketingBtn = metricsToggle.querySelector('.metrics-btn:last-child');
+        
+        generalBtn.classList.add('active');
+        marketingBtn.classList.remove('active');
+        
+        // Mostrar métricas generales y ocultar marketing
+        const generalMetrics = document.querySelector(`#${tabName} .general-metrics`);
+        const marketingMetrics = document.querySelector(`#${tabName} .marketing-metrics`);
+        
+        if (generalMetrics && marketingMetrics) {
+            generalMetrics.style.display = 'grid';
+            marketingMetrics.style.display = 'none';
         }
-
+    }
+    
+    // Destruir todas las gráficas existentes
+    Object.keys(chartInstances).forEach(key => {
+        if (chartInstances[key]) {
+            chartInstances[key].destroy();
+            delete chartInstances[key];
+        }
+    });
+    
+    // Inicializar gráficas del mes seleccionado
+    setTimeout(() => {
+        if (tabName === 'general') {
+            initGeneralCharts();
+        } else {
+            initMonthlyCharts(tabName);
+        }
+    }, 100);
+}
         // Función para alternar desglose
         function toggleBreakdown(contentId) {
             const content = document.getElementById(contentId);
@@ -1830,7 +2104,57 @@ const monthOrder = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio'];
         document.querySelectorAll('.metric-card, .chart-panel').forEach(el => {
             observer.observe(el);
         });
+function showMetrics(type, element) {
+    // Obtener el mes actual
+    const currentTab = document.querySelector('.tab-panel.active').id;
+    
+    // Actualizar botones
+    const container = element.closest('.metrics-toggle');
+    container.querySelectorAll('.metrics-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    element.classList.add('active');
+    
+    // Mostrar/ocultar métricas
+    const generalMetrics = document.querySelector(`#${currentTab} .general-metrics`);
+    const marketingMetrics = document.querySelector(`#${currentTab} .marketing-metrics`);
+    
+    if (generalMetrics && marketingMetrics) {
+        if (type === 'general') {
+            generalMetrics.style.display = 'grid';
+            marketingMetrics.style.display = 'none';
+        } else {
+            generalMetrics.style.display = 'none';
+            marketingMetrics.style.display = 'grid';
+            updateMarketingMetrics(currentTab);
+        }
+    }
+}
+
+// Función para actualizar métricas de marketing
+function updateMarketingMetrics(month) {
+    if (month === 'general') {
+        // Calcular totales para vista general
+        const totalPublicidad = Object.values(monthlyData).reduce((sum, m) => sum + m.gastos[0], 0);
+        const totalPlataformas = Object.values(monthlyData).reduce((sum, m) => sum + m.gastos[2], 0);
+        const totalContenido = Object.values(monthlyData).reduce((sum, m) => sum + m.gastos[1], 0);
+        const totalCasos = Object.values(monthlyData).reduce((sum, m) => sum + m.casos, 0);
+        const totalGastos = Object.values(monthlyData).reduce((sum, m) => sum + m.gastos.reduce((a, b) => a + b, 0), 0);
         
+        document.getElementById('general-ratio').textContent = 'Q ' + Math.round(totalGastos / totalCasos).toLocaleString();
+        document.getElementById('general-publicidad').textContent = 'Q ' + totalPublicidad.toLocaleString();
+        document.getElementById('general-plataformas').textContent = 'Q ' + totalPlataformas.toLocaleString();
+        document.getElementById('general-contenido').textContent = 'Q ' + totalContenido.toLocaleString();
+    } else {
+        const data = monthlyData[month];
+        const gastoTotal = data.gastos.reduce((sum, gasto) => sum + gasto, 0);
+        
+        document.getElementById(month + '-ratio').textContent = 'Q ' + Math.round(gastoTotal / data.casos).toLocaleString();
+        document.getElementById(month + '-publicidad').textContent = 'Q ' + data.gastos[0].toLocaleString();
+        document.getElementById(month + '-plataformas').textContent = 'Q ' + data.gastos[2].toLocaleString();
+        document.getElementById(month + '-contenido').textContent = 'Q ' + data.gastos[1].toLocaleString();
+    }
+}
     </script>
 </body>
 
